@@ -1,200 +1,244 @@
 <div class="container">
-  <div class="row justify-content-center" style="height:100vh;">
-    <div class="col-lg-6 col-md-9 col-9  p-3 border shadow align-self-center">
 
-      <form [formGroup]="userForm" class="row g-3" (ngSubmit)="OnSubmit()">
+      <form [formGroup]="userForm" class="row justify-content-center" (ngSubmit)="OnSubmit()" style="height:100vh;">
 
-        <div class="col-md-6">
-          <label for="inputEmail4" class="form-label">First Name</label>
-          <input type="text" class="form-control" formControlName="firstname" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }"/>
-          <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
-            <div *ngIf="f.firstname.errors.required">First Name is required</div>
-          </div>
-        </div>
+        <div class="col-lg-6 col-md-9 col-9 p-3 border shadow align-self-center">
+          <h2 class="text-center m-1">Candidate Details</h2>
+          <div class="row g-3">
 
-        <div class="col-md-6">
-          <label for="inputPassword4" class="form-label">Last Name</label>
-          <input type="text" class="form-control" formControlName="lastname" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }"/>
-          <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
-            <div *ngIf="f.lastname.errors.required">Last Name is required</div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <label for="inputEmail4" class="form-label">Email</label>
-          <input type="email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
-          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-            <div *ngIf="f.email.errors.required">Email is required</div>
-            <div *ngIf="f.email.errors.email">Enter valid Email id</div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <label for="inputEmail4" class="form-label">Phone</label>
-          <input type="number" class="form-control" formControlName="phone" [ngClass]="{'is-invalid': submitted && f.phone.errors}"/>
-          <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
-            <div *ngIf="f.phone.errors.required">Phone number is required</div>
-            <div *ngIf="f.phone.errors.max || f.phone.errors.min">Phone number is must be 10 digits</div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <label for="inputState" class="form-label">Gender</label>
-          <select id="inputState" class="form-select" formControlName="gender" [ngClass]="{'is-invalid': submitted && f.gender.errors}">
-            <option value="">Select</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
-          <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
-            <div *ngIf="f.gender.errors.required">Select your gender is required</div>
-          </div>
-        </div>
-
-        <div class="col-12" formArrayName="addressLine"
-          *ngFor="let address of userForm.get('addressLine')['controls']; let i=index">
-          <div [formGroupName]="i">
-            <label for="inputAddress" class="form-label">Address</label>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" formControlName="line" [ngClass]="{'is-invalid': submitted && address.get('line').errors}"/>
-              <button *ngIf="i>0" class="input-group-text btn-dark bg-gradient" type="button" (click)="removeLine(i)">X</button>
-              <button *ngIf="i==0" class="input-group-text btn-dark bg-gradient" type="button" (click)="addAddressLine()">+</button>
-              <div *ngIf="submitted && address.get('line').errors" class="invalid-feedback">
-                <div *ngIf="address.get('line').errors.required">Address is required</div>
+            <div class="col-md-6">
+              <label for="inputEmail4" class="form-label">First Name</label>
+              <input type="text" class="form-control" formControlName="firstname" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }"/>
+              <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                <div *ngIf="f.firstname.errors.required">First Name is required</div>
               </div>
             </div>
-
+  
+            <div class="col-md-6">
+              <label for="inputPassword4" class="form-label">Last Name</label>
+              <input type="text" class="form-control" formControlName="lastname" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }"/>
+              <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                <div *ngIf="f.lastname.errors.required">Last Name is required</div>
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <label for="inputEmail4" class="form-label">Email</label>
+              <input type="email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+                <div *ngIf="f.email.errors.email">Enter valid Email id</div>
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <label for="inputEmail4" class="form-label">Phone</label>
+              <input type="number" class="form-control" formControlName="phone" [ngClass]="{'is-invalid': submitted && f.phone.errors}"/>
+              <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                <div *ngIf="f.phone.errors.required">Phone number is required</div>
+                <div *ngIf="f.phone.errors.max || f.phone.errors.min">Phone number is must be 10 digits</div>
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <label for="inputState" class="form-label">Gender</label>
+              <select id="inputState" class="form-select" formControlName="gender" [ngClass]="{'is-invalid': submitted && f.gender.errors}">
+                <option value="">Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+              <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                <div *ngIf="f.gender.errors.required">Select your gender is required</div>
+              </div>
+            </div>
+  
+            <div class="col-12" formArrayName="addressLine" *ngFor="let address of userForm.get('addressLine')['controls']; let i=index">
+              <div [formGroupName]="i">
+                <label for="inputAddress" class="form-label">Address</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" formControlName="line" [ngClass]="{'is-invalid': submitted && address.get('line').errors}"/>
+                  <button *ngIf="i>0" class="input-group-text btn-dark bg-gradient" type="button" (click)="removeLine(i)">X</button>
+                  <button *ngIf="i==0" class="input-group-text btn-dark bg-gradient" type="button" (click)="addAddressLine()">+</button>
+                  <div *ngIf="submitted && address.get('line').errors" class="invalid-feedback">
+                    <div *ngIf="address.get('line').errors.required">Address is required</div>
+                  </div>
+                </div>
+  
+              </div>
+            </div>
+  
+            <div class="col-md-5">
+              <label for="inputCity" class="form-label">City</label>
+              <input type="text" class="form-control"  formControlName="city" [ngClass]="{'is-invalid': submitted && f.city.errors}"/>
+              <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                <div *ngIf="f.city.errors.required">City Name is required</div>
+              </div>
+            </div>
+  
+            <div class="col-md-4">
+              <label for="inputState" class="form-label">State</label>
+              <select id="inputState" class="form-select" formControlName="state" [ngClass]="{'is-invalid': submitted && f.state.errors}">
+                <option value="">Select</option>
+                <option *ngFor="let s of state" [value]="s">{{s}}</option>
+              </select>
+              <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                <div *ngIf="f.state.errors.required">City Name is required</div>
+              </div>
+            </div>
+  
+            <div class="col-md-3">
+              <label for="inputZip" class="form-label">Pincode</label>
+              <input type="number" class="form-control" formControlName="pincode" [ngClass]="{ 'is-invalid': submitted && f.pincode.errors }"/>
+              <div *ngIf="submitted && f.pincode.errors" class="invalid-feedback">
+                <div *ngIf="f.pincode.errors.required">Pincode is required</div>
+                <div *ngIf="f.pincode.errors.max || f.phone.errors.min">Pincode is must be 6 digits</div>
+              </div>
+            </div>
+  
+            <div class="col-10">
+              <h4>Add Your Family Members</h4>
+            </div>
+            <div class="col-2">
+              <button class="btn btn-dark bg-gradient" type="button" (click)="addFamily()">+</button>
+            </div> 
+  
           </div>
+          
         </div>
 
-
-        <!-- <div class="col-2 mt-5">
-          <button class="btn btn-dark bg-gradient" type="button" (click)="addAddressLine()">+</button>
-        </div> -->
-
-
-
-        <div class="col-md-5">
-          <label for="inputCity" class="form-label">City</label>
-          <input type="text" class="form-control"  formControlName="city" [ngClass]="{'is-invalid': submitted && f.city.errors}"/>
-          <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
-            <div *ngIf="f.city.errors.required">City Name is required</div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <label for="inputState" class="form-label">State</label>
-          <select id="inputState" class="form-select" formControlName="state" [ngClass]="{'is-invalid': submitted && f.state.errors}">
-            <option value="">Select</option>
-            <option *ngFor="let s of state" [value]="s">{{s}}</option>
-          </select>
-          <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
-            <div *ngIf="f.state.errors.required">City Name is required</div>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <label for="inputZip" class="form-label">Pincode</label>
-          <input type="number" class="form-control" formControlName="pincode" [ngClass]="{ 'is-invalid': submitted && f.pincode.errors }"/>
-          <div *ngIf="submitted && f.pincode.errors" class="invalid-feedback">
-            <div *ngIf="f.pincode.errors.required">Pincode is required</div>
-            <div *ngIf="f.pincode.errors.max || f.phone.errors.min">Pincode is must be 6 digits</div>
-          </div>
-        </div>
 
         <!-- Relations -->
 
-        <!-- <div class="row g-3 ">
-          <hr>
 
-          <div class="col-md-6">
-            <label for="inputState" class="form-label">Relationship </label>
-            <select id="inputState" class="form-select">
-            <option selected>Choose...</option>
-            <option>...</option>
-          </select>
+
+         <div class="col-lg-6 col-3 col-3 p-3 relation border shadow align-self-center" *ngIf="addresscard !=0">
+          <h2 class="text-center m-1">Family Members Details</h2>
+          <div  formArrayName="family" *ngFor="let fam of userForm.get('family')['controls']; let j=index">
+            <hr>
+  
+            <div class="row g-3" [formGroupName]="j">
+
+              <button type="button" class="offset-11 col-1 btn btn-dark align-self-end" (click)="removeFamily(j)">X</button>
+  
+              <div class="col-md-6">
+                <label for="inputState" class="form-label">Relationship </label>
+                <select id="inputState" class="form-select" formControlName="relationship" [ngClass]="{'is-invalid': submitted && fam.get('relationship').errors}">
+                <option value="">Select</option>
+                <option *ngFor="let r of relation" [value]="r">{{r}}</option>
+              </select>
+              <div *ngIf="submitted && fam.get('relationship').errors" class="invalid-feedback">
+                <div *ngIf="fam.get('relationship').errors.required">Relationship is required</div>
+              </div>
+              </div>
+    
+              <div class="col-md-6">
+                <label for="firstname" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstname" formControlName="rel_firstname" [ngClass]="{'is-invalid': submitted && fam.get('rel_firstname').errors}" />
+                <div *ngIf="submitted && fam.get('rel_firstname').errors" class="invalid-feedback">
+                  <div *ngIf="fam.get('rel_firstname').errors.required">First Name is required</div>
+                </div>
+              </div>
+    
+              <div class="col-md-6">
+                <label for="lastname" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastname" formControlName="rel_lastname" [ngClass]="{'is-invalid': submitted && fam.get('rel_lastname').errors}"/>
+                <div *ngIf="submitted && fam.get('rel_lastname').errors" class="invalid-feedback">
+                  <div *ngIf="fam.get('rel_lastname').errors.required">Last Name is required</div>
+                </div>
+              </div>
+    
+              <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" formControlName="rel_email" [ngClass]="{'is-invalid': submitted && fam.get('rel_email').errors}"/>
+                <div *ngIf="submitted && fam.get('rel_email').errors" class="invalid-feedback">
+                  <div *ngIf="fam.get('rel_email').errors.required">Email is required</div>
+                  <div *ngIf="fam.get('rel_email').errors.email">Enter valid Email id</div>
+                </div>
+              </div>
+    
+              <div class="col-md-6">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="number" class="form-control" id="phone" formControlName="rel_phone" [ngClass]="{'is-invalid': submitted && fam.get('rel_phone').errors}"/>
+                <div *ngIf="submitted && fam.get('rel_phone').errors" class="invalid-feedback">
+                  <div *ngIf="fam.get('rel_phone').errors.required">Phone number is required</div>
+                  <div *ngIf="fam.get('rel_phone').errors.max || fam.get('rel_phone').errors.min">Phone number is must be 10 digits</div>
+                </div>
+              </div>
+    
+              <div class="col-md-6">
+                <label for="gender" class="form-label">Gender</label>
+                <select id="inputState" class="form-select" formControlName="rel_gender" [ngClass]="{'is-invalid': submitted && fam.get('rel_gender').errors}">
+                  <option value="">Select</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+                <div *ngIf="submitted && fam.get('rel_gender').errors" class="invalid-feedback">
+                  <div *ngIf="fam.get('rel_gender').errors.required">Gender is required</div>
+                </div>
+              </div>
+    
+              <div class="col-12" formArrayName="rel_addressLine" *ngFor="let address of fam.get('rel_addressLine')['controls']; let i=index">
+                <div [formGroupName]="i">
+                  <label for="inputAddress" class="form-label">Address</label>
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" formControlName="line" [ngClass]="{'is-invalid': submitted && address.get('line').errors}"/>
+                    <button *ngIf="i>0" class="input-group-text btn-dark bg-gradient" type="button" (click)="removefamilyLine(j,i)">X</button>
+                    <button *ngIf="i==0" class="input-group-text btn-dark bg-gradient" type="button" (click)="addfamilyLine(j)">+</button>
+                    <div *ngIf="submitted && address.get('line').errors" class="invalid-feedback">
+                      <div *ngIf="address.get('line').errors.required">Address is required</div>
+                    </div>
+                  </div>
+  
+                </div>
+              </div>
+    
+              <div class="col-md-5">
+                <label for="inputCity" class="form-label">City</label>
+                <input type="text" class="form-control" id="inputCity" formControlName="rel_city" [ngClass]="{'is-invalid': submitted && fam.get('rel_city').errors}"/>
+                <div *ngIf="submitted && fam.get('rel_city').errors" class="invalid-feedback">
+                  <div *ngIf="fam.get('rel_city').errors.required">Gender is required</div>
+                </div>
+              </div>
+    
+              <div class="col-md-4">
+                <label for="inputState" class="form-label">State</label>
+                <select id="inputState" class="form-select" formControlName="rel_state" [ngClass]="{'is-invalid': submitted && fam.get('rel_state').errors}">
+                  <option value="">Select</option>
+                  <option *ngFor="let s of state" [value]="s">{{s}}</option>
+                </select>
+                <div *ngIf="submitted && fam.get('rel_state').errors" class="invalid-feedback">
+                <div *ngIf="fam.get('rel_state').errors.required">City Name is required</div>
+              </div>
+              </div>
+    
+              <div class="col-md-3">
+                <label for="inputZip" class="form-label">Pincode</label>
+                <input type="number" class="form-control" formControlName="rel_pincode" [ngClass]="{ 'is-invalid': submitted && fam.get('rel_pincode').errors }"/>
+                <div *ngIf="submitted && fam.get('rel_pincode').errors" class="invalid-feedback">
+                  <div *ngIf="fam.get('rel_pincode').errors.required">Pincode is required</div>
+                  <div *ngIf="fam.get('rel_pincode').errors.max || fam.get('rel_pincode').errors.min">Pincode is must be 6 digits</div>
+                </div>
+              </div>
+  
+            </div>
+  
+          </div> 
+          
+         </div>
+
+         <div class="row justify-content-center">
+          <div class="col-2 align-self-center">
+            <button type="submit" class="btn btn-dark btn-lg bg-gradient">Submit</button>
           </div>
-
-
-          <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">First Name</label>
-            <input type="text" class="form-control" id="inputEmail4" />
-          </div>
-
-          <div class="col-md-6">
-            <label for="inputPassword4" class="form-label">Last Name</label>
-            <input type="text" class="form-control" id="inputPassword4" />
-          </div>
-
-          <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Email</label>
-            <input type="email" class="form-control" id="inputEmail4" />
-          </div>
-
-          <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Phone</label>
-            <input type="number" class="form-control" id="inputEmail4" />
-          </div>
-
-          <div class="col-md-6">
-            <label for="inputState" class="form-label">Gender</label>
-            <select id="inputState" class="form-select">
-            <option selected>Choose...</option>
-            <option>...</option>
-          </select>
-          </div>
-
-          <div class="col-12">
-            <label for="inputAddress" class="form-label">Address</label>
-            <input
-            type="text"
-            class="form-control"
-            id="inputAddress"
-            placeholder="1234 Main St"
-          />
-          </div>
-
-          <div class="col-12">
-            <button class="btn btn-dark bg-gradient rounded-pill">Add Line</button>
-          </div>
-
-
-
-          <div class="col-md-5">
-            <label for="inputCity" class="form-label">City</label>
-            <input type="text" class="form-control" id="inputCity" />
-          </div>
-
-          <div class="col-md-4">
-            <label for="inputState" class="form-label">State</label>
-            <select id="inputState" class="form-select">
-            <option selected>Choose...</option>
-            <option>...</option>
-          </select>
-          </div>
-
-          <div class="col-md-3">
-            <label for="inputZip" class="form-label">Zip</label>
-            <input type="text" class="form-control" id="inputZip" />
-          </div>
-
-        </div> 
-
-        <div class="col-10">
-          <h4>Add Your Family Members</h4>
         </div>
-        <div class="col-2">
-          <button class="btn btn-dark  bg-gradient">+</button>
-        </div> -->
 
-        <div class="col-12">
-          <button type="submit" class="btn btn-dark bg-gradient">Submit</button>
-        </div>
       </form>
-    </div>
-    <div class="col-lg-6 col-md-3 col-3">
-      <pre>{{userForm.value | json}}</pre>
-    </div>
-  </div>
+  
 
 </div>
+
+<!-- <div class="col-lg-6 col-md-3 col-3 align-self-center ps-1 h5">
+  <code><pre>{{userForm.value | json}}</pre></code>
+</div> -->

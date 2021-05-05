@@ -36,7 +36,8 @@
             <input type="number" class="form-control" formControlName="phone" [ngClass]="{'is-invalid': submitted && f.phone.errors}"/>
             <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
               <div *ngIf="f.phone.errors.required">Phone number is required</div>
-              <div *ngIf="f.phone.errors.max || f.phone.errors.min">Phone number is must be 10 digits</div>
+              <div *ngIf="f.phone.errors.max">Phone number is must be 10 digits</div>
+              <div *ngIf="f.phone.errors.min">Phone number is must be 10 digits</div>
             </div>
           </div>
 

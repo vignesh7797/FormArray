@@ -93,7 +93,8 @@
             <input type="number" class="form-control" formControlName="pincode" [ngClass]="{ 'is-invalid': submitted && f.pincode.errors }"/>
             <div *ngIf="submitted && f.pincode.errors" class="invalid-feedback">
               <div *ngIf="f.pincode.errors.required">Pincode is required</div>
-              <div *ngIf="f.pincode.errors.max || f.phone.errors.min">Pincode is must be 6 digits</div>
+              <div *ngIf="f.pincode.errors.max">Pincode is must be 6 digits</div>
+              <div *ngIf="f.pincode.errors.min">Pincode is must be 6 digits</div>
             </div>
           </div>
 
